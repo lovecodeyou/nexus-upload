@@ -46,3 +46,6 @@
 ## 成功上传
 
 ![img_7.png](doc/img_7.png)
+
+
+![img.png](doc/img_12.png)
