@@ -45,7 +45,16 @@
 
 ## 成功上传
 
+### windows环境
+
 ![img_7.png](doc/img_7.png)
 
 
+
 ![img.png](doc/img_12.png)
+
+### linux环境
+
+![img.png](doc/img13.png)
+
+![img_1.png](doc/img_14.png)
