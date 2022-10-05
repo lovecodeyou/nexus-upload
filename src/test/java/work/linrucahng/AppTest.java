@@ -65,5 +65,9 @@ public class AppTest {
         String[] commands = {"-l", "C:\\Users\\Administrator\\Desktop\\新建文件夹", "-u", "admin", "-p", "admin123", "-r", "http://192.168.19.107:8082/repository/lrc3"};
 
         Console.log(StrUtil.join(StrUtil.SPACE,commands));
+
+        commands = new String[]{"-l", "/www/project/nexus-upload/testRepo", "-u", "admin", "-p", "admin123", "-r", "http://192.168.19.107:8082/repository/lrc3"};
+
+        Console.log(StrUtil.join(StrUtil.SPACE,commands));
     }
 }

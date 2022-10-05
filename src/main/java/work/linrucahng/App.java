@@ -20,7 +20,11 @@ import java.util.stream.Collectors;
 public class App {
 
     /**
-     * java -jar nexus-upload-1.0-SNAPSHOT.jar
+     * windows：
+     *    java -jar nexus-upload.jar -l C:\Users\Administrator\Desktop\新建文件夹 -u admin -p admin123 -r http://192.168.19.107:8082/repository/lrc3
+     *
+     * linux：
+     *   java -jar nexus-upload.jar  -l /www/project/nexus-upload/testRepo -u admin -p admin123 -r http://192.168.19.107:8082/repository/lrc3
      * @param args
      */
     public static void main(String[] args) {
@@ -128,8 +132,17 @@ public class App {
      */
     public static boolean checkNexusRepositoryUrlNetworkConnectivity(NexusParam nexusParam) {
         Console.log("\n================检测远程目录地址网络连通性, 请耐心等待=============================");
-        int requestStatusCode = HttpRequest.put(nexusParam.getNexusRepositoryUrl()).execute().getStatus();
-        boolean validFlag = requestStatusCode == 401;
+        boolean validFlag = true;
+        try {
+            int requestStatusCode = HttpRequest.put(nexusParam.getNexusRepositoryUrl())
+                    .timeout(5000)
+                    .execute()
+                    .getStatus();
+            validFlag = requestStatusCode == 401;
+        }catch (Exception e) {
+            validFlag = false;
+        }
+
         if (validFlag) {
             Console.log("远程仓库【{}】访问通", nexusParam.getNexusRepositoryUrl());
         } else {
@@ -178,7 +191,7 @@ public class App {
                 Console.log("本地仓库文件上传结束，脚本结束");
                 break;
             } else {
-                Console.log("错误：[{}]非法字符，请根据提示输入对应的内容", userConfirm);
+                Console.log("错误：【{}】非法字符，请根据提示输入对应的内容", userConfirm);
             }
         }
 
